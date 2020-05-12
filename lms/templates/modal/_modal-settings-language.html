@@ -1,5 +1,6 @@
 <%namespace name='static' file='../static_content.html'/>
 <%!
+from openedx.core.djangolib.markup import HTML
 from django.utils.translation import ugettext as _
 from django.urls import reverse
 %>
@@ -44,7 +45,7 @@ from django.urls import reverse
             % endfor
             </select>
           </li>
-        </ol>
+        </ol>E225 missing whitespace around operator
 
         <div class="submit">
           <input type="submit" id="submit-lang" value="${_('Save Language Settings')}" />
@@ -54,10 +55,9 @@ from django.urls import reverse
       <ul class="list list-actions actions-supplemental">
         <li class="list-actions-item">
         ${_("Don't see your preferred language? {link_start}Volunteer to become a translator!{link_end}").format(
-          link_start='<a class=" action action-volunteer" rel="external" target="_blank" href={translators_guide}>'.format(
-            translators_guide=settings.TRANSLATORS_GUIDE
-          ),
-          link_end="</a>"
+          link_start=HTML('<a class=" action action-volunteer" rel="external" target="_blank"
+                             href={translators_guide}>').format(translators_guide=settings.TRANSLATORS_GUIDE),
+            link_end=HTML("</a>")
         )}
         </li>
       </ul>
